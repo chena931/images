@@ -6,24 +6,75 @@
   <style> body {padding: 0; margin: 0;} </style>
   <script>
 
-  //declare your images as a global variable
  
+ var sea;
+ var fish1;
+ var fish2;
+ var fish3;
+ var man;
+ var coral1;
+ var coral2;
+ var coral3;
+
 
 	function preload(){
 
-		// Load the image
+		sea = loadImage("../assets/background.jpg");
+		fish = loadImage("../assets/fish.jpg");
+		man = loadImage("../assets/man.png");
+		coral1 = loadImage("../assets/coral.png");
+		coral2 = loadImage("../assets/coral.png");
+		coral3 = loadImage("../assets/coral.png");
+
 	}
 
 
 	function setup() {
 
-	  //set up your canvas
+	  createCanvas(sea.width, sea.height);
+	  noCursor();
+
+	  coral1.filter(INVERT);
+	  coral2.filter(BLUR,5);
 
 	}
 
 	function draw() {
 
-		//draw
+		background(sea,0,0);
+
+		image(coral3,100,330,coral3.width/7,coral3.height/7);
+		image(coral1,110,340,coral1.width/5,coral1.height/5);	
+		image(coral1,250,340,coral1.width/6,coral1.height/6);
+		image(coral3,200,360,coral3.width/5,coral3.height/5);
+		image(coral1,70,360,coral1.width/6,coral1.height/6);
+		image(coral1,60,355,coral1.width/6,coral1.height/6);
+		image(coral3,60,370,coral3.width/5,coral3.height/5);
+
+
+		imageMode(CENTER);
+
+		for(var x = 1; x<5; x++){
+			for(var y = 1; y<3; y++){
+				
+				blend(fish, 0,0, fish.width, fish.height, mouseX*x/4, mouseY*y/4, fish.width/4, fish.height/4, MULTIPLY);
+				blend(fish, 0,0, fish.width, fish.height, mouseX*x/3+10, mouseY*y/3+10, fish.width/2, fish.height/2, MULTIPLY);
+				blend(fish, 0,0, fish.width, fish.height, mouseX*x/2, mouseY*y/2, fish.width/3, fish.height/3, MULTIPLY);
+			}
+		}
+
+		
+		image(man,mouseX, mouseY, man.width/2, man.height/2);
+
+		if(mouseIsPressed){
+			stroke("lightblue");
+			ellipse(mouseX+150,mouseY-25,10,10);
+			ellipse(mouseX+180,mouseY-30,20,20);
+			ellipse(mouseX+220,mouseY-40,30,30);
+		}
+
+		image(coral2,650,510,coral2.width/2,coral2.height/2);
+		image(coral2,940,400,coral2.width,coral2.height);
 
 	}
 
